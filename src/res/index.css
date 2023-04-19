@@ -218,14 +218,6 @@ body {
   background-color: var(--lighter_bg);
 }
 
-.light {
-  background-color: rgb(151, 151, 151);
-}
-
-.dark {
-  background-color: rgb(54, 54, 54);
-}
-
 .na-button {
   background-color: var(--button_bg);
   border: none;
