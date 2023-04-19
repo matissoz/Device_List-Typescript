@@ -8,7 +8,7 @@ export class DynamicList {
   private filter: Filter = "None";
   private sort: Sort = "None";
   //order = true ascending / order = false descending
-  private order: boolean = false;
+  private order = false;
   constructor(private _root: HTMLElement) {
     this.tableBody = this._root.querySelector(".table-body");
 
@@ -21,27 +21,27 @@ export class DynamicList {
       if (el.classList.contains("address")) {
         el.value = this.validateAddressRange(el.value);
       }
-      console.log("UID:"+el.parentElement.parentElement.id + " " + el.value);
+      console.log("UID:" + el.parentElement.parentElement.id + " " + el.value);
     });
   }
 
   createIndicatorEl(status: boolean) {
-    let indicatorEl = document.createElement("td");
+    const indicatorEl = document.createElement("td");
     indicatorEl.classList.add(status ? "online" : "offline");
     indicatorEl.classList.add("indicator");
     return indicatorEl;
   }
 
   createUidEl(uid: string) {
-    let uidEl = document.createElement("td");
+    const uidEl = document.createElement("td");
     uidEl.classList.add("uid");
     uidEl.innerHTML = uid;
     return uidEl;
   }
 
   createLabelEl(label: string) {
-    let labelEl = document.createElement("td");
-    let labelInputEl = document.createElement("input");
+    const labelEl = document.createElement("td");
+    const labelInputEl = document.createElement("input");
     labelInputEl.classList.add("input");
     labelInputEl.classList.add("label");
     labelInputEl.value = label;
@@ -50,25 +50,25 @@ export class DynamicList {
   }
 
   createManufacturerEl(manufacturer: string) {
-    let manufacturerEl = document.createElement("td");
+    const manufacturerEl = document.createElement("td");
     manufacturerEl.classList.add("manufacturer");
     manufacturerEl.innerHTML = manufacturer;
     return manufacturerEl;
   }
 
   createModelEl(model: string) {
-    let modelEl = document.createElement("td");
+    const modelEl = document.createElement("td");
     modelEl.innerHTML = model;
     return modelEl;
   }
 
   createSelectEl(mode_index: number, mode_count: number) {
-    let modeEl = document.createElement("td");
-    let modeSelectEl = document.createElement("select");
+    const modeEl = document.createElement("td");
+    const modeSelectEl = document.createElement("select");
     modeSelectEl.classList.add("input");
     modeSelectEl.classList.add("mode");
     for (let i = 1; i <= mode_count; i++) {
-      var option = document.createElement("option");
+      const option = document.createElement("option");
       option.text = `Mode#${i}`;
       option.value = `Mode#${i}`;
       if (mode_index == i) {
@@ -81,8 +81,8 @@ export class DynamicList {
   }
 
   createAddressEl(address: number) {
-    let addressEl = document.createElement("td");
-    let addressInputEl = document.createElement("input");
+    const addressEl = document.createElement("td");
+    const addressInputEl = document.createElement("input");
     addressInputEl.classList.add("input");
     addressInputEl.classList.add("address");
     addressInputEl.type = "number";
@@ -94,7 +94,7 @@ export class DynamicList {
   }
 
   addDevice(item: RDM_Device) {
-    let newRow = document.createElement("tr");
+    const newRow = document.createElement("tr");
     newRow.id = item.uid_integer.toString();
     newRow.classList.add("table-item");
 
@@ -123,7 +123,10 @@ export class DynamicList {
       this.createLabelEl(updatedDeviceData.label),
       this.createManufacturerEl(updatedDeviceData.manufacturer),
       this.createModelEl(updatedDeviceData.model),
-      this.createSelectEl(updatedDeviceData.mode_index, updatedDeviceData.mode_count),
+      this.createSelectEl(
+        updatedDeviceData.mode_index,
+        updatedDeviceData.mode_count
+      ),
       this.createAddressEl(updatedDeviceData.address)
     );
   }

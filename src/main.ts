@@ -6,8 +6,8 @@ window.onload = () => {
   main();
 };
 
-var g_Server: Server;
-var g_DeviceList: DynamicList;
+let g_Server: Server;
+let g_DeviceList: DynamicList;
 
 function main() {
   g_Server = new Server({
